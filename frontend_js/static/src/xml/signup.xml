@@ -1,3 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates>
+    <div t-name="frontend_js.country_selector">
+        <div class="mb-3 field-country" t-if="widget.countries.length > 0">
+            <label for="login">Your Country</label>
+            <select name="country_id"
+                class="form-control">
+                <option value="">Select a country</option>
+                <t t-foreach="widget.countries"
+                    t-as="country"
+                    t-key="country.id">
+                    <option t-att-value="country.id"
+                        t-esc="country.name"
+                        t-att-data-show-vat="country.is_european"
+                        t-att-selected="country.id === widget.selectedCountryId" />
+                </t>
+            </select>
+        </div>
+        <div class="mb-3 field-vat"
+            t-if="widget.vatRequired">
+            <label for="vat">Your VAT Number</label>
+            <input type="text"
+                name="vat"
+                id="vat"
+                class="form-control"
+                />
+        </div>
+    </div>
 </templates>
